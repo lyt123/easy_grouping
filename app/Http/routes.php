@@ -24,4 +24,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/user/activity/myCreate', 'ActivityController@myCreate');
+Route::get('/user/activity/myJoin', 'ActivityController@myJoin');
 Route::resource('/user/activity', 'ActivityController');
+Route::post('/user/activity/join', 'ActivityController@join');
+
+
+Route::post('/common/upload', 'CommonController@upload');
+
+Route::resource('/user/comment', 'CommentController');
+
+Route::resource('/logo', 'LogoController');
+
+Route::post('/user/login', 'UserController@login');
+

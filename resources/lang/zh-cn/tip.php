@@ -34,7 +34,7 @@ return [
     //act
     'not_act_creater'                   => '不是该活动创建者',
     'time_and_address_not_belong_to_act'=> 'time_and_address_not_belong_to_act',
-    'already_join_act'                  => '你已参加该活动',
+    'already_join'                  => '你已参加此活动,请勿重复参加',
     'timeid_forbid'                     => '该时间id不存在 或 不属于当前活动',
     'addressid_forbid'                  => '该地点id不存在 或 不属于当前活动',
 

@@ -10,4 +10,24 @@ class Activity extends BaseModel
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function activity_user()
+    {
+        return $this->belongsToMany(User::class, 'user_activity');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'foreign_id');
+    }
+
+    public function picture()
+    {
+        return $this->hasMany(Picture::class, 'foreign_id');
+    }
 }
