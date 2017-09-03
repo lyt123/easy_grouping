@@ -46,9 +46,10 @@ class activityController extends Controller
 
     public function index(Request $req)
     {
-        $result = ActivityRepository::indexList($req->get('limit'));
+//        $result = ActivityRepository::indexList($req->get('limit'));
 
-        return success($result);
+//        return success($result);
+        echo 'hehe';
     }
 
     public function join(Request $req)
