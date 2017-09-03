@@ -49,7 +49,7 @@ class activityController extends Controller
 //        $result = ActivityRepository::indexList($req->get('limit'));
 
 //        return success($result);
-        echo 'dd';
+        echo 'ddd';
     }
 
     public function join(Request $req)
