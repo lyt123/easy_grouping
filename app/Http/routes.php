@@ -26,8 +26,8 @@ Route::get('/', function () {
 
 Route::get('/user/activity/myCreate', 'ActivityController@myCreate');
 Route::get('/user/activity/myJoin', 'ActivityController@myJoin');
-Route::resource('/user/activity', 'ActivityController');
 Route::post('/user/activity/join', 'ActivityController@join');
+Route::resource('/user/activity', 'ActivityController');
 
 
 Route::post('/common/upload', 'CommonController@upload');

@@ -10,4 +10,6 @@ class Picture extends BaseModel
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public $resourceFields = ['path'];
 }

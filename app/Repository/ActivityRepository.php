@@ -9,7 +9,7 @@ class ActivityRepository extends BaseRepository
 
     public static function indexList($limit)
     {
-        return static::setCondition(['is_public' => 1])->withCertain('user')
+        return static::setCondition(['is_public' => 1, 'deleted_at' => 0])->withCertain('user')
             ->paginate($limit)->toArray();
     }
 

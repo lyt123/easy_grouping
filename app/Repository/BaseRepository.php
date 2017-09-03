@@ -71,7 +71,7 @@ class BaseRepository
         return new $instance;
     }
 
-    public static function updateData(array $data, $where)
+    public static function updateData(array $data, $where, $not_update_abort = true)
     {
         try {
             if (empty($data))
@@ -94,7 +94,7 @@ class BaseRepository
             }
 
             $result = $object->update($data);
-            if (!$result)
+            if (!$result && $not_update_abort)
                 abort(422, trans('tip.nothing_update'));
 
             if (isset($old_resources) && count($old_resources))
