@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Repository\CommentRepository;
 use App\Repository\CommonRepository;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class CommentController extends Controller
         $this->middleware('must_login', ['only' => ['store']]);
     }
 
-    public function store(Request $req)
+    public function store(StoreCommentRequest $req)
     {
         $data = $req->all();
 

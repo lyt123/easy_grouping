@@ -19,6 +19,9 @@ $validators[] = new CaseInsensitiveUriValidator;
 IlluminateRoute::$validators = array_filter($validators, function($validator) {
     return get_class($validator) != UriValidator::class;
 });
+Route::get('/test', function () {
+    echo 'heeh';
+});
 
 Route::get('/', function () {
     return view('welcome');
