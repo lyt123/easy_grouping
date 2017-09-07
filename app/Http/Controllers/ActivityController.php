@@ -25,6 +25,7 @@ class activityController extends Controller
      */
     public function store(StoreActivityRequest $req)
     {
+        // TODO:限制每个人每天最多发布10个活动
         $data = $req->except(['picture_paths']);
 
         $data['created_at'] = time();
@@ -70,10 +71,10 @@ class activityController extends Controller
         ActivityRepository::checkExist(['id' => $data['activity_id']], '活动不存在或已被删除');
 
         //判断是否已参加活动
-//        ActivityJoinRepository::checkExist(
-//            ['user_id' => $data['user_id'], 'activity_id' => $data['activity_id']],
-//            'tip.already_join', 1
-//        );
+        ActivityJoinRepository::checkExist(
+            ['user_id' => $data['user_id'], 'activity_id' => $data['activity_id']],
+            'tip.already_join', 1
+        );
 
         if (ActivityJoinRepository::exceedNumberLimit($data['activity_id']))
             return fail('活动人数已满');
@@ -110,7 +111,7 @@ class activityController extends Controller
         $data['time_start'] = strtotime($data['time_start']);
 
         //判断是否是活动所有者
-        ActivityRepository::checkExist(['id' =>$id, 'user_id' => session()->get('user.id')]);
+        ActivityRepository::checkExist(['id' => $id, 'user_id' => session()->get('user.id')]);
 
         //统一管理图片回收,不合理。图片的上传跟活动的添加还是不要分开两个接口会好一点
         //这里的transaction是没意义的，失败也不会回退，所以我加了一个false参数在updateData上，原因我还没弄明白
@@ -129,7 +130,7 @@ class activityController extends Controller
     public function destroy($id)
     {
         //判断是否是活动所有者
-        ActivityRepository::checkExist(['id' =>$id, 'user_id' => session()->get('user.id')]);
+        ActivityRepository::checkExist(['id' => $id, 'user_id' => session()->get('user.id')]);
 
         //真正删除：
         /* DB::transaction(function () use ($id) {

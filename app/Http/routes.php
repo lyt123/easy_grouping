@@ -40,4 +40,6 @@ Route::resource('/user/comment', 'CommentController');
 Route::resource('/logo', 'LogoController');
 
 Route::post('/user/login', 'UserController@login');
+Route::post('/user/updateUserInfo/{id}', 'UserController@updateUserInfo');
+Route::resource('/user', 'UserController');
 

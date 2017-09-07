@@ -50,11 +50,11 @@ if (!function_exists('success')) {
 
 if (!function_exists('fail')) {
 
-    function fail($inform = false, $status = 422, $position = 'ajax_error')
+    function fail($message = false, $status = 422, $position = 'ajax_error')
     {
         $data = [
             'status' => $status,
-            'inform' => $inform ?: trans('tip.fail')
+            'message' => $message ?: trans('tip.fail')
         ];
 
         if (config('app.debug')) {
