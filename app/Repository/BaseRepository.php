@@ -24,6 +24,7 @@ class BaseRepository
     public static function setCondition(array $where, array $or_where = [])
     {
         $object = static::query();
+
         foreach ($where as $key => $value) {
             if (is_array($value))
                 $object = $object->where($key, $value[0], $value[1]);
@@ -136,10 +137,10 @@ class BaseRepository
         if(empty($error_tip))
             return count($object->get());
 
-        if (!count($object->get()) && $exist_abort == 0)
+        if ($exist_abort == 0 && !count($object->get())  )
             abort(404, trans($error_tip));
 
-        if (count($object->get()) && $exist_abort == 1)
+        if (  $exist_abort == 1 && count($object->get()))
             abort(404, trans($error_tip));
     }
 }

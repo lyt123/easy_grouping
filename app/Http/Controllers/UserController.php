@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -32,6 +33,7 @@ class UserController extends Controller
         UserRepository::checkExist(['email' => $data['email']], '账号不存在');
 
         $result = UserRepository::read(['where' => ['email' => $data['email']]], true);
+
         if (password_verify($data['password'], $result['password'])) {
             session()->put('user.id', $result['id']);
         } else {
